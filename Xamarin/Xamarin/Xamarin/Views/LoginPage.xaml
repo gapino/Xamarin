@@ -85,6 +85,7 @@
                              BackgroundColor="Navy"
                              BorderRadius="23"
                              HorizontalOptions="FillAndExpand"
+                             IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                              Text="Entrar"
                              TextColor="White"
                               Command="{Binding LoginComand}"></Button>
@@ -92,6 +93,7 @@
                             BackgroundColor="Purple"
                             BorderRadius="23"
                             HorizontalOptions="FillAndExpand"
+                            IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                             Text="Registrar"
                             TextColor="White">
                     </Button>
