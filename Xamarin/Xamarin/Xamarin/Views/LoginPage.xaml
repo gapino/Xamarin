@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.Views.LoginPage">
+    <ContentPage.Content>
+        <StackLayout
+            Padding="10, 20, 10, 5">
+            <Label 
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="Center"
+                Text="Países">
+            </Label>
+            <Image
+                HeightRequest="200"
+                Source="onu">
+            </Image>
+            <Label
+                Text="E-mail">
+            </Label>
+            <Entry
+                Keyboard="Email"
+                Placeholder="Digite seu E-mail">
+            </Entry>
+            <Label
+                Text="Password">
+            </Label>
+            <Entry
+                IsPassword="True"
+                Placeholder="Digite seu E-mail">
+            </Entry>
+            <ActivityIndicator
+                >
+            </ActivityIndicator>
+            <Button
+                BackgroundColor="Navy"
+                BorderRadius="23"
+                Text="Entrar"
+                TextColor="White">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
