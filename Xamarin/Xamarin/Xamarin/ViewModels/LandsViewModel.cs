@@ -15,14 +15,14 @@ namespace Xamarin.ViewModels
     class LandsViewModel : BaseViewModel 
     {
 
-        private ObservableCollection<Lands> lands;
+        private ObservableCollection<LandViewItemModel> lands;
         private bool isRefresh;
         private string filter;
-        private List<Lands> landList;
+        private List<LandViewItemModel> landList;
 
         private ApiService apiService;
 
-        public ObservableCollection<Lands> Lands
+        public ObservableCollection<LandViewItemModel> Lands
         {
             get { return lands; }
             set { SetValue(ref lands, value); }
@@ -69,11 +69,11 @@ namespace Xamarin.ViewModels
         {
             if (string.IsNullOrEmpty(this.Filter))
             {
-                this.Lands = new ObservableCollection<Lands>(this.landList);
+                this.Lands = new ObservableCollection<LandViewItemModel>(this.landList);
             }
             else
             {
-                this.Lands = new ObservableCollection<Lands>(this.landList.Where(
+                this.Lands = new ObservableCollection<LandViewItemModel>(this.landList.Where(
                     l => l.Name.ToLower().Contains(this.Filter.ToLower()) ||
                          l.Capital.ToLower().Contains(this.Filter.ToLower())));
             }
@@ -91,7 +91,7 @@ namespace Xamarin.ViewModels
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
             }
-            var response = await this.apiService.GetList<Lands>("http://restcountries.eu", "/rest", "/v2/all");
+            var response = await this.apiService.GetList<LandViewItemModel>("http://restcountries.eu", "/rest", "/v2/all");
 
             if (!response.IsSucces)
             {
@@ -100,8 +100,8 @@ namespace Xamarin.ViewModels
                 return;
             }
             this.IsRefresh = false;
-            this.landList = (List<Lands>)response.Result;
-            this.Lands = new ObservableCollection<Lands>(this.landList);
+            this.landList = (List<LandViewItemModel>)response.Result;
+            this.Lands = new ObservableCollection<LandViewItemModel>(this.landList);
         }
     }
 
