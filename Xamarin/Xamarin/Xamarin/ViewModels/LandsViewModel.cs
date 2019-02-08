@@ -1,7 +1,10 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Model;
 using Xamarin.Services;
@@ -13,6 +16,10 @@ namespace Xamarin.ViewModels
     {
 
         private ObservableCollection<Lands> lands;
+        private bool isRefresh;
+        private string filter;
+        private List<Lands> landList;
+
         private ApiService apiService;
 
         public ObservableCollection<Lands> Lands
@@ -21,6 +28,20 @@ namespace Xamarin.ViewModels
             set { SetValue(ref lands, value); }
         }
 
+        public bool IsRefresh
+        {
+            get { return isRefresh; }
+            set { SetValue(ref isRefresh, value); }
+        }
+        public string Filter
+        {
+            get { return filter; }
+            set
+            {
+                SetValue(ref filter, value);
+                this.Search();
+            }
+        }
 
         public LandsViewModel()
         {
@@ -28,12 +49,44 @@ namespace Xamarin.ViewModels
             this.LoadLands();
         }
 
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new RelayCommand(LoadLands);
+            } 
+        }
+
+        public ICommand FilterCommand
+        {
+            get
+            {
+                return new RelayCommand(Search);
+            }
+        }
+
+        private void Search()
+        {
+            if (string.IsNullOrEmpty(this.Filter))
+            {
+                this.Lands = new ObservableCollection<Lands>(this.landList);
+            }
+            else
+            {
+                this.Lands = new ObservableCollection<Lands>(this.landList.Where(
+                    l => l.Name.ToLower().Contains(this.Filter.ToLower()) ||
+                         l.Capital.ToLower().Contains(this.Filter.ToLower())));
+            }
+        }
+
         private async void LoadLands()
         {
+            this.IsRefresh = true;
             var conect = await this.apiService.CheckConnection();
 
             if (!conect.IsSucces)
             {
+                this.IsRefresh = false;
                 await Application.Current.MainPage.DisplayAlert("Error", conect.Message, "Aceitar");
                 await Application.Current.MainPage.Navigation.PopAsync();
                 return;
@@ -42,12 +95,13 @@ namespace Xamarin.ViewModels
 
             if (!response.IsSucces)
             {
+                this.IsRefresh = false;
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message,"Aceitar");
                 return;
             }
-
-            var list = (List<Lands>)response.Result;
-           // this.Lands = new ObservableCollection<Lands>(list); 
+            this.IsRefresh = false;
+            this.landList = (List<Lands>)response.Result;
+            this.Lands = new ObservableCollection<Lands>(this.landList);
         }
     }
 

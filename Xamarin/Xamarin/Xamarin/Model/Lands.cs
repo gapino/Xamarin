@@ -16,8 +16,8 @@ namespace Xamarin.Model
         [JsonProperty(PropertyName = "alpha2Code")]
         public string Alpha2Code { get; set; }
 
-        [JsonProperty(PropertyName = "name")]
-        public string alpha3Code { get; set; }
+        [JsonProperty(PropertyName = "alpha3Code")]
+        public string Alpha3Code { get; set; }
 
         [JsonProperty(PropertyName = "callingCodes")]
         public List<string> CallingCodes { get; set; }

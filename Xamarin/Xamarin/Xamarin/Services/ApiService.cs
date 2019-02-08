@@ -65,7 +65,7 @@ namespace Xamarin.Services
                 {
                     IsSucces = true,
                     Message = "Ok",
-                    Result = result
+                    Result = list
                 };
             }
             catch ( Exception sms)

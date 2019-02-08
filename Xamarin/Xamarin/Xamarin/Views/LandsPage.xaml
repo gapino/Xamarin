@@ -6,11 +6,55 @@
              Title="Paises">
     <ContentPage.Content>
         <StackLayout
-            BindingContext="Lands"
+            BindingContext="{Binding Lands}"
             Padding="5">
-            <Label
-                FontSize="Large"
-                Text="Paises" />
+            <SearchBar
+                Text="{Binding Filter}"
+                Placeholder="Procurar"
+                SearchCommand="{Binding FilterCommand}"></SearchBar>
+            <ListView
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsRefresh, Mode=TwoWay}"
+                ItemsSource="{Binding Lands}"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout
+                                    Grid.Column="0"
+                                    VerticalOptions="Center">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}"
+                                        TextColor="Black"
+                                        >
+                                        
+                                    </Label>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Capital}"
+                                        TextColor="Black"
+                                        >
+                                    </Label>
+                                    <Image
+                                        Grid.Column="1"
+                                        HorizontalOptions="End"
+                                        Source="ic_chevron_right"></Image>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
