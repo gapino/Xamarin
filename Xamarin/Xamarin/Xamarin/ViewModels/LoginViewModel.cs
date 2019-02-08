@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Views;
 
 namespace Xamarin.ViewModels
 {
@@ -58,11 +59,22 @@ namespace Xamarin.ViewModels
             }
             else
             {
-                if (this.Email == "guille.pino24@gmail.com" && this.Pass == "123")
+                if (this.Email == "guille" && this.Pass == "123")
                 {
-                    await Application.Current.MainPage.DisplayAlert("OK", "Seja Benvindo", "Aceitar");
+                   
                     this.IsRunning = true;
                     this.IsEnabled = false;
+
+                    this.Email = string.Empty;
+                    this.Pass = string.Empty;
+
+                    MainViewModel.GetInstance().Lands = new LandsViewModel();
+                    await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+
+                    
                 }
                 else
                 {
