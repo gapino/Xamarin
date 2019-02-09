@@ -28,7 +28,25 @@ namespace Xamarin.ViewModels
                 Alpha2Code = this.Alpha2Code,
                 Alpha3Code = this.Alpha3Code,
                 CallingCodes = this.CallingCodes,
-                Capital = this.Capital
+                Capital = this.Capital,
+                AltSpellings = this.AltSpellings,
+                Region = this.Region,
+                Subregion = this.Subregion,
+                Population = this.Population,
+                Latlng = this.Latlng,
+                Demonym = this.Demonym,
+                Area = this.Area,
+                Gini = this.Gini,
+                Timezones = this.Timezones,
+                Borders = this.Borders,
+                NativeName = this.NativeName,
+                NumericCode = this.NumericCode,
+                Currencies = this.Currencies,
+                Languages = this.Languages,
+                Translations = this.Translations,
+                Flag = this.Flag,
+                RegionalBlocs = this.RegionalBlocs,
+                Cioc = this.Cioc
             };
             MainViewModel.GetInstance().Land = new LandViewModel(obj);
             Application.Current.MainPage.Navigation.PushAsync(new LandPage());
