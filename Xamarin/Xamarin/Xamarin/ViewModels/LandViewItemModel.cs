@@ -49,7 +49,7 @@ namespace Xamarin.ViewModels
                 Cioc = this.Cioc
             };
             MainViewModel.GetInstance().Land = new LandViewModel(obj);
-            Application.Current.MainPage.Navigation.PushAsync(new LandPage());
+            Application.Current.MainPage.Navigation.PushAsync(new LandTabbedPage());
         }
     }
 }
