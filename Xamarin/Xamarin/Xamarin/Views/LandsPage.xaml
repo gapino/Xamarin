@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffimageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformation="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:FFImageLoadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Xamarin.Views.LandsPage"
              BindingContext="{Binding Main,Source={StaticResource Key=Locator}}"
              BackgroundColor="Silver"
              Title="Paises">
+    <ContentPage.Resources>
+        <FFImageLoadingsvg:SvgImageSourceConverter x:Key="SvgImageSourceConverter"/>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout
             BindingContext="{Binding Lands}">
@@ -33,11 +39,18 @@
                                 </Frame.GestureRecognizers>
                                 <Grid>
                                     <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
+                                    <ffimageLoading:CachedImage
+                                        Grid.Column="0"
+                                        HeightRequest="30"
+                                        Source="{Binding Flag, Converter={StaticResource SvgImageSourceConverter}}"
+                                        WidthRequest="60">
+                                     </ffimageLoading:CachedImage>
                                     <StackLayout
-                                    Grid.Column="0"
+                                    Grid.Column="1"
                                     VerticalOptions="Center">
                                         <Label
                                         FontAttributes="Bold"
@@ -54,11 +67,12 @@
                                         TextColor="Black"
                                         >
                                         </Label>
-                                        <Image
-                                        Grid.Column="1"
+                                        </StackLayout>
+                                    <Image
+                                        Grid.Column="2"
                                         HorizontalOptions="End"
                                         Source="ic_chevron_right"></Image>
-                                    </StackLayout>
+
                                 </Grid>
                             </Frame>
                         </ViewCell>

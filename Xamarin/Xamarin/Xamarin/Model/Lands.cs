@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace Xamarin.Model
@@ -78,5 +79,7 @@ namespace Xamarin.Model
 
         [JsonProperty(PropertyName = "cioc")]
         public string Cioc { get; set; }
+
+       
     }
 }
