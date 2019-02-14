@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Model;
 
 namespace Xamarin.ViewModels
 {
@@ -11,6 +12,8 @@ namespace Xamarin.ViewModels
         public LandsViewModel Lands { get; set; }
 
         public LandViewModel Land { get; set; }
+
+        public TokenResponse Token { get; set; }
 
         public MainViewModel()
         {

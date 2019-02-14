@@ -5,13 +5,14 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Services;
 using Xamarin.Views;
 
 namespace Xamarin.ViewModels
 {
     class LoginViewModel : BaseViewModel
     {
-
+        private ApiService apiService;
         private string email;
         private string pass;
         private bool isRunning;
@@ -53,41 +54,62 @@ namespace Xamarin.ViewModels
 
         private async void Login()
         {
+            this.IsRunning = true;
+            this.IsEnabled = false;
             if (string.IsNullOrEmpty(this.Email) || string.IsNullOrEmpty(this.Pass))
             {
+                this.IsRunning = true;
+                this.IsEnabled = false;
                 await Application.Current.MainPage.DisplayAlert("Error", "não pode deixar campos vazios", "Aceitar");
+                this.IsRunning = false;
+                this.IsEnabled = true;
+
             }
             else
             {
-                if (this.Email == "guille" && this.Pass == "123")
+                this.IsRunning = true;
+                this.IsEnabled = false;
+                var connection = await this.apiService.CheckConnection();
+                if (!connection.IsSucces)
                 {
-                   
-                    this.IsRunning = true;
-                    this.IsEnabled = false;
-
-                    this.Email = string.Empty;
-                    this.Pass = string.Empty;
-
-                    MainViewModel.GetInstance().Lands = new LandsViewModel();
-                    await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
-
                     this.IsRunning = false;
                     this.IsEnabled = true;
-
-                    
+                    await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceitar");
+                    return;
                 }
-                else
+                    var token = await apiService.GetToken("http://guille.somee.com/api/", this.Email, this.Pass);
+
+                if (token == null)
                 {
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
+                    await Application.Current.MainPage.DisplayAlert("Error", "Algo aconteceu mal, por favor tente de novo", "Aceitar");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(token.Accesstoken))
+                {
+                    this.IsRunning = false;
+                    this.IsEnabled = true;
                     await Application.Current.MainPage.DisplayAlert("Error", "Usuario ou password incorrecto", "Aceitar");
-                    this.Pass = string.Empty;
-                    this.IsRunning = false;
-                    this.IsEnabled = true;
+                    return;
                 }
+
+                var mainViewModel = MainViewModel.GetInstance();
+                mainViewModel.Token = token;
+                mainViewModel.Lands = new LandsViewModel();
+                await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+                this.Email = string.Empty;
+                this.Pass = string.Empty;
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
             }
         }
 
         public LoginViewModel()
         {
+            this.apiService = new ApiService();
             this.IsRemember = true;
             this.IsEnabled = true;
         }
