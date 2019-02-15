@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Model;
-using Plugin.Connectivity;
-using System.Net.Http;
-using Newtonsoft.Json;
-
+﻿
 namespace Xamarin.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Xamarin.Model;
+    using Plugin.Connectivity;
+    using System.Net.Http;
+    using Newtonsoft.Json;
+    using Lands.Domain;
     public class ApiService
     {
         public async Task<Response> CheckConnection()
