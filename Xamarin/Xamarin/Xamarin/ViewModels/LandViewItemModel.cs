@@ -10,7 +10,7 @@ using Xamarin.Views;
 
 namespace Xamarin.ViewModels
 {
-    public class LandViewItemModel : Lands
+    public class LandViewItemModel : Land
     {
         public ICommand SelectLandCommand
         {
@@ -22,7 +22,7 @@ namespace Xamarin.ViewModels
 
         private void SelectItem()
         {
-            Lands obj = new Lands
+            Land obj = new Land
             {
                 Name = this.Name,
                 TopLevelDomain = this.TopLevelDomain,

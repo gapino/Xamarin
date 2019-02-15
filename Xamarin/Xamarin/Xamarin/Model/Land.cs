@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Xamarin.Model
 {
-    public class Lands
+    public class Land
     {
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
