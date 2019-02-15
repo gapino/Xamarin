@@ -1,4 +1,8 @@
-﻿namespace Lands.Domain
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Xamarin.Model
 {
     public class Response
     {
