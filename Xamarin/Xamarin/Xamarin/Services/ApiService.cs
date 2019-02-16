@@ -6,7 +6,6 @@ using Xamarin.Model;
 using Plugin.Connectivity;
 using System.Net.Http;
 using Newtonsoft.Json;
-
 namespace Xamarin.Services
 {
     public class ApiService

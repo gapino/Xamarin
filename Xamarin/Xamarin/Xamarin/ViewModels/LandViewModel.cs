@@ -21,7 +21,7 @@ namespace Xamarin.ViewModels
         #endregion
 
         #region Propiedades
-        public Lands Land { get; set; }
+        public Land Land { get; set; }
 
         public ObservableCollection<string> Borders
         {
@@ -44,7 +44,7 @@ namespace Xamarin.ViewModels
         #endregion
 
         #region Constructor
-        public LandViewModel(Lands land)
+        public LandViewModel(Land land)
         {
             this.Land = land;
             this.Borders = new ObservableCollection<string>(land.Borders);

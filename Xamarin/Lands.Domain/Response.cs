@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Xamarin.Model
+﻿namespace Lands.Domain
 {
     public class Response
     {
