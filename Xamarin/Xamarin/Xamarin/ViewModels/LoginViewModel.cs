@@ -53,6 +53,24 @@ namespace Xamarin.ViewModels
             }
         }
 
+        public ICommand RegisterCommand
+        {
+            get
+            {
+                return new RelayCommand(Register);
+            }
+        }
+
+        private async void Register()
+        {
+            this.IsRunning = true;
+            this.IsEnabled = false;
+            MainViewModel.GetInstance().Register = new RegisterViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new RegisterPage());
+            this.IsRunning = false;
+            this.IsEnabled = true;
+        }
+
         private async void Login()
         {
             this.IsRunning = true;

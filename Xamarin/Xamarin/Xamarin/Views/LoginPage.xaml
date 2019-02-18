@@ -94,6 +94,7 @@
                             BorderRadius="23"
                             HorizontalOptions="FillAndExpand"
                             IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                            Command="{Binding RegisterCommand}"
                             Text="Registrar"
                             TextColor="White">
                     </Button>
