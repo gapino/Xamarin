@@ -7,6 +7,8 @@ namespace Xamarin
 {
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; }
+
         public App()
         {
             InitializeComponent();

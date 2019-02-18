@@ -98,7 +98,7 @@ namespace Xamarin.ViewModels
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = token;
                 mainViewModel.Lands = new LandsViewModel();
-                await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
+                Application.Current.MainPage = new MasterPage();
                 this.Email = string.Empty;
                 this.Pass = string.Empty;
 
@@ -112,6 +112,8 @@ namespace Xamarin.ViewModels
             this.apiService = new ApiService();
             this.IsRemember = true;
             this.IsEnabled = true;
+            this.Email = "guille.pino24@gmail.com";
+            this.Pass = "V1v1c0qu1*";
         }
     }
 }
