@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Helpers;
 using Xamarin.Views;
 
 namespace Xamarin.ViewModels
@@ -28,6 +29,12 @@ namespace Xamarin.ViewModels
         {
             if (this.PageName == "LoginPage")
             {
+                Settings.Token = string.Empty;
+                Settings.TokenType = string.Empty;
+
+                var main = MainViewModel.GetInstance();
+                main.Token = string.Empty;
+                main.TokenType = string.Empty;
                 Application.Current.MainPage = new NavigationPage( new LoginPage());
             }
         }

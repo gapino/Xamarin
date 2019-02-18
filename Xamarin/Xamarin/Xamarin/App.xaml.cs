@@ -1,6 +1,8 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Helpers;
+using Xamarin.ViewModels;
 using Xamarin.Views;
 
 namespace Xamarin
@@ -12,8 +14,18 @@ namespace Xamarin
         public App()
         {
             InitializeComponent();
-
-            MainPage = new NavigationPage(new LoginPage());
+            if (string.IsNullOrEmpty(Settings.Token))
+            {
+                MainPage = new NavigationPage(new LoginPage());
+            }
+            else
+            {
+                var main = MainViewModel.GetInstance();
+                main.Token = Settings.Token;
+                main.TokenType = Settings.TokenType;
+                main.Lands = new LandsViewModel();
+                MainPage = new MasterPage();
+            }
         }
 
         protected override void OnStart()

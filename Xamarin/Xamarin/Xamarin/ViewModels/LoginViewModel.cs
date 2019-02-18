@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Helpers;
 using Xamarin.Services;
 using Xamarin.Views;
 
@@ -96,7 +97,13 @@ namespace Xamarin.ViewModels
                 }
 
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.Token = token;
+                mainViewModel.Token = token.Accesstoken;
+                mainViewModel.TokenType = token.Tokentype;
+                if (this.IsRemember)
+                {
+                    Settings.Token = token.Accesstoken;
+                    Settings.TokenType = token.Tokentype;
+                }
                 mainViewModel.Lands = new LandsViewModel();
                 Application.Current.MainPage = new MasterPage();
                 this.Email = string.Empty;
@@ -112,8 +119,7 @@ namespace Xamarin.ViewModels
             this.apiService = new ApiService();
             this.IsRemember = true;
             this.IsEnabled = true;
-            this.Email = "guille.pino24@gmail.com";
-            this.Pass = "V1v1c0qu1*";
+            
         }
     }
 }
