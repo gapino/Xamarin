@@ -13,8 +13,16 @@ namespace Lands.BackEnd
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+           
+
             routes.MapRoute(
-                name: "Default",
+               name: "Default",
+               url: "apiback/{controller}/{action}/{id}",
+               defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
+                name: "Default1",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
