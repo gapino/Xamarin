@@ -264,7 +264,7 @@ namespace Xamarin.ViewModels
                     "Galeria",
                     "Camara");
 
-                if (source == "Galeria")
+                if (source == "Cancelar")
                 {
                     this.file = null;
                     return;
