@@ -96,7 +96,7 @@ namespace Xamarin.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceitar");
                     return;
                 }
-                    var token = await apiService.GetToken("http://guille.somee.com/api/", this.Email, this.Pass);
+                    var token = await apiService.GetToken("http://guille.somee.com/Token", this.Email, this.Pass);
 
                 if (token == null)
                 {
@@ -114,6 +114,8 @@ namespace Xamarin.ViewModels
                     return;
                 }
 
+                var user = await apiService.GetUserByEmail(Application.Current.Resources["APISecurity"].ToString(),
+                                                           "/api", "/Users/GetUserByEmail", this.Email);
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.Token = token.Accesstoken;
                 mainViewModel.TokenType = token.Tokentype;

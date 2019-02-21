@@ -16,6 +16,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Lands.API.Controllers
 {
+    [RoutePrefix("api/Users")]
     public class UsersController : ApiController
     {
         private DataContext db = new DataContext();
