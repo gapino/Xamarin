@@ -118,6 +118,10 @@
     <AndroidResource Include="Resources\drawable\ic_attach_money.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Lands.Domain\Lands.Domain.csproj">
+      <Project>{3a830a33-de8a-4f56-9502-5028d5855faa}</Project>
+      <Name>Lands.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Xamarin\Xamarin.csproj">
       <Project>{E70B1591-41FA-4A85-AC5B-5A7BC6136A4F}</Project>
       <Name>Xamarin</Name>

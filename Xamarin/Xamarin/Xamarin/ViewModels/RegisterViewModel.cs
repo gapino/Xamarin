@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Lands.Domain;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System;
@@ -204,7 +205,7 @@ namespace Xamarin.ViewModels
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
             }
 
-            var user = new User
+            var user = new UserView
             {
                 Email = this.Email,
                 FirstName = this.FirstName,
@@ -212,6 +213,7 @@ namespace Xamarin.ViewModels
                 Telephone = this.Telephone,
                 ImageArray = imageArray,
                 Password = this.Password,
+                UserId = 0
             };
 
             var apiSecurity = Application.Current.Resources["APISecurity"].ToString();
