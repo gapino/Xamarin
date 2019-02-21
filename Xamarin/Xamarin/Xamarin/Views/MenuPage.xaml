@@ -1,18 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"      
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+             xmlns:ffimageLoading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformation="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:FFImageLoadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="Xamarin.Views.MenuPage"
              BindingContext="{Binding Main,Source={StaticResource Key=Locator}}"
-             Title="Menu">
-    <ContentPage.Content>
-        <StackLayout>
+             Title="Menu"
+            >
+    <ContentPage.Content
+         BackgroundColor="Red">
+        <StackLayout
+            Padding="5"
+            >
+            <StackLayout 
+                BackgroundColor="Navy"
+                Padding="5">
+                <controls:CircleImage 
+                Aspect="AspectFill"
+                HeightRequest="150"
+                Source="{Binding User.ImageFullPath}">
+                </controls:CircleImage>
+                <Label
+                FontSize="Medium"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                Text="{Binding User.FullName}"
+                TextColor="Black"
+                
+                ></Label>
+
+            </StackLayout>
             <ListView
                 HasUnevenRows="True"
                 ItemsSource="{Binding Menus}"
                 SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                    <ViewCell>
+                        <ViewCell>
                             <Grid>
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer

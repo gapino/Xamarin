@@ -14,6 +14,7 @@ namespace Xamarin.ViewModels
     class LoginViewModel : BaseViewModel
     {
         private ApiService apiService;
+        private DataService dataServices;
         private string email;
         private string pass;
         private bool isRunning;
@@ -116,13 +117,19 @@ namespace Xamarin.ViewModels
 
                 var user = await apiService.GetUserByEmail(Application.Current.Resources["APISecurity"].ToString(),
                                                            "/api", "/Users/GetUserByEmail", this.Email);
+
+                var userLocal = Converter.ToUserLocal(user);
+                
                 var mainViewModel = MainViewModel.GetInstance();
+
+                mainViewModel.User = userLocal;
                 mainViewModel.Token = token.Accesstoken;
                 mainViewModel.TokenType = token.Tokentype;
                 if (this.IsRemember)
                 {
                     Settings.Token = token.Accesstoken;
                     Settings.TokenType = token.Tokentype;
+                    this.dataServices.DeleteAllAndInsert(userLocal);
                 }
                 mainViewModel.Lands = new LandsViewModel();
                 Application.Current.MainPage = new MasterPage();
@@ -137,6 +144,7 @@ namespace Xamarin.ViewModels
         public LoginViewModel()
         {
             this.apiService = new ApiService();
+            this.dataServices = new DataService();
             this.IsRemember = true;
             this.IsEnabled = true;
             

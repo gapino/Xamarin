@@ -2,6 +2,8 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Helpers;
+using Xamarin.Model;
+using Xamarin.Services;
 using Xamarin.ViewModels;
 using Xamarin.Views;
 
@@ -10,6 +12,7 @@ namespace Xamarin
     public partial class App : Application
     {
         public static NavigationPage Navigator { get; internal set; }
+        public static MasterPage Master { get; internal set; }
 
         public App()
         {
@@ -20,7 +23,11 @@ namespace Xamarin
             }
             else
             {
+                var dataService = new DataService();
+                var user = dataService.First<UserLocal>(false);
+
                 var main = MainViewModel.GetInstance();
+                main.User = user;
                 main.Token = Settings.Token;
                 main.TokenType = Settings.TokenType;
                 main.Lands = new LandsViewModel();

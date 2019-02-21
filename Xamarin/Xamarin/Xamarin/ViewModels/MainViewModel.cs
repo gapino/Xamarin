@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lands.Domain;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -16,11 +17,15 @@ namespace Xamarin.ViewModels
 
         public LandViewModel Land { get; set; }
 
+        public ProfileViewModel Profile { get; set; }
+
         public string Token { get; set; }
 
         public string TokenType { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
+        public UserLocal User { get; set; }
 
         public MainViewModel()
         {
