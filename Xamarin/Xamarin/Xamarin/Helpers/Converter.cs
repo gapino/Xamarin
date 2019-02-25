@@ -20,5 +20,19 @@ namespace Xamarin.Helpers
                 UserId = user.UserId,
             };
         }
+
+        public static UserView ToUserDomain(UserLocal user, byte[] imageArray)
+        {
+            return new UserView
+            {
+                Email = user.Email,
+                FirstName = user.FirstName,
+                ImagePath = user.ImagePath,
+                LastName = user.LastName,
+                Telephone = user.Telephone,
+                UserId = user.UserId,
+                ImageArray = imageArray
+            };
+        }
     }
 }

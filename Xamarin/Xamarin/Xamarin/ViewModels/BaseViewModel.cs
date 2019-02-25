@@ -6,23 +6,23 @@ using System.Text;
 
 namespace Xamarin.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
-    {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public class BaseViewModel : INotifyPropertyChanged
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+            public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(backingField, value))
+            protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
             {
-                return;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
-            backingField = value;
-            OnPropertyChanged(propertyName);
+
+            protected void SetValue<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
+            {
+                if (EqualityComparer<T>.Default.Equals(backingField, value))
+                {
+                    return;
+                }
+                backingField = value;
+                OnPropertyChanged(propertyName);
+            }
         }
-    }
 }
