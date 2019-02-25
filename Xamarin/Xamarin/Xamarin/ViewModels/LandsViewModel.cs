@@ -12,7 +12,7 @@ using Xamarin.Services;
 
 namespace Xamarin.ViewModels
 {
-    class LandsViewModel : BaseViewModel 
+    public class LandsViewModel : BaseViewModel 
     {
 
         private ObservableCollection<LandViewItemModel> lands;

@@ -11,7 +11,7 @@ using Xamarin.Views;
 
 namespace Xamarin.ViewModels
 {
-    class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
         private ApiService apiService;
         private DataService dataServices;
@@ -97,7 +97,8 @@ namespace Xamarin.ViewModels
                     await Application.Current.MainPage.DisplayAlert("Error", connection.Message, "Aceitar");
                     return;
                 }
-                    var token = await apiService.GetToken("http://guille.somee.com/Token", this.Email, this.Pass);
+                    var token = await apiService.GetToken(Application.Current.Resources["APISecurity"].ToString(), this.Email, this.Pass);
+
 
                 if (token == null)
                 {
@@ -116,7 +117,11 @@ namespace Xamarin.ViewModels
                 }
 
                 var user = await apiService.GetUserByEmail(Application.Current.Resources["APISecurity"].ToString(),
-                                                           "/api", "/Users/GetUserByEmail", this.Email);
+                                                           "/api",
+                                                           "/Users/GetUserByEmail",
+                                                           token.Tokentype,
+                                                           token.Accesstoken,
+                                                           this.Email);
 
                 var userLocal = Converter.ToUserLocal(user);
                 

@@ -7,7 +7,7 @@ using Xamarin.Model;
 
 namespace Xamarin.ViewModels
 {
-    class MainViewModel
+    public class MainViewModel
     {
         public LoginViewModel Login { get; set; }
 

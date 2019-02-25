@@ -20,10 +20,10 @@ namespace Xamarin.Model
         public string UserName { get; set; }
 
 
-        [JsonProperty(PropertyName = "invalid_name__issued")]
+        [JsonProperty(PropertyName = ".issued")]
         public string Invalidname_issued { get; set; }
 
-        [JsonProperty(PropertyName = "invalid_name__expires")]
+        [JsonProperty(PropertyName = ".expires")]
         public string Invalidnameexpires { get; set; }
     }
 }

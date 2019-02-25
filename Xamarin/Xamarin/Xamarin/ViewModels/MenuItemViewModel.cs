@@ -9,7 +9,7 @@ using Xamarin.Views;
 
 namespace Xamarin.ViewModels
 {
-    class MenuItemViewModel
+    public class MenuItemViewModel
     {
         public string Icon { get; set; }
 
